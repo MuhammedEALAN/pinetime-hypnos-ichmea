@@ -77,7 +77,6 @@ int8_t bma421_init(struct bma4_dev *dev)
  * @brief This API sets/un-sets the user provided interrupt to either interrupt
  * pin1 or pin2 in the sensor.
  */
-int8_t bma421_map_interrupt(uint8_t int_line, uint16_t int_map, uint8_t enable, struct bma4_dev *dev)
 {
     int8_t rslt = BMA4_OK;
 
@@ -91,7 +90,6 @@ int8_t bma421_map_interrupt(uint8_t int_line, uint16_t int_map, uint8_t enable, 
                 rslt = bma4_map_interrupt(int_line, int_map, enable, dev);
             }
             else
-            {
                 rslt = BMA4_E_INT_LINE_INVALID;
             }
         }

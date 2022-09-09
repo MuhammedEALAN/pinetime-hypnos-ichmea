@@ -7,43 +7,7 @@
 #define DT_DRV_COMPAT bosch_bma421
 
 #include <device.h>
-#include <drivers/i2c.h>
-#include <sys/util.h>
-#include <kernel.h>
-#include <drivers/sensor.h>
-
-#include "bma421.h"
-#include "bma421_features.h"
-
-#include <logging/log.h>
-LOG_MODULE_DECLARE(BMA421, CONFIG_SENSOR_LOG_LEVEL);
-
-int bma421_attr_set(struct device *dev,
-		    enum sensor_channel chan,
-		    enum sensor_attribute attr,
-		    const struct sensor_value *val)
-{
-	struct bma421_data *drv_data = dev->driver_data;
-	switch(attr) {
-	case SENSOR_ATTR_SLOPE_TH:
-		break;
-	default:
-		return -ENOTSUP;
-	}
-
-	return 0;
-}
-
-static void bma421_gpio_callback(struct device *dev,
-				 struct gpio_callback *cb, u32_t pins)
-{
-	struct bma421_data *drv_data =
-		CONTAINER_OF(cb, struct bma421_data, gpio_cb);
-
-	ARG_UNUSED(pins);
-
-#if defined(CONFIG_BMA421_TRIGGER_OWN_THREAD)
-	k_sem_give(&drv_data->gpio_sem);
+#include <
 #elif defined(CONFIG_BMA421_TRIGGER_GLOBAL_THREAD)
 	k_work_submit(&drv_data->work);
 #endif
@@ -60,7 +24,7 @@ static void bma421_thread_cb(void *arg)
 	/* check for data ready */
 	if (((int_status & BMA4_ACCEL_DATA_RDY_INT) == BMA4_ACCEL_DATA_RDY_INT)
 		&& drv_data->data_ready_handler != NULL) {
-		drv_data->data_ready_handler(dev, &drv_data->data_ready_trigger);
+		drv_data->datafsdfdgfdgd_ready_handler(dev, &drv_data->data_ready_trigger);
 	}
 
 	/* check for any error */
